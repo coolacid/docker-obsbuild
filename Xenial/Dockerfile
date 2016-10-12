@@ -1,4 +1,4 @@
-FROM ubuntu:vivid
+FROM ubuntu:xenial
 MAINTAINER jakendall@gmail.com
 RUN sed -i '/deb-src/! s/http:\/\/archive.ubuntu.com/http:\/\/mirror/g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -yq \
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -yq \
     libxinerama-dev libv4l-dev libudev-dev libfreetype6-dev \
     libfontconfig-dev qtbase5-dev libqt5x11extras5-dev libx264-dev \
     libxcb-xinerama0-dev libxcb-shm0-dev libjack-jackd2-dev libcurl4-openssl-dev \
-    libavcodec-ffmpeg-dev libavdevice-ffmpeg-dev libavfilter-ffmpeg-dev libavformat-ffmpeg-dev libswscale-ffmpeg-dev  \
+    libavcodec-dev libavdevice-dev libavfilter-dev libavformat-dev libswscale-dev  \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/* /tmp/*
 
 RUN git clone https://github.com/jp9000/obs-studio.git
