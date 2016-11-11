@@ -1,6 +1,6 @@
 FROM ubuntu:yakkety
 MAINTAINER jakendall@gmail.com
-RUN sed -i '/deb-src/! s/http:\/\/archive.ubuntu.com/http:\/\/mirror/g' /etc/apt/sources.list
+# RUN sed -i '/deb-src/! s/http:\/\/archive.ubuntu.com/http:\/\/mirror/g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -yq \
     build-essential pkg-config cmake git checkinstall \
     libx11-dev libgl1-mesa-dev libpulse-dev libxcomposite-dev libvlc-dev libvlc5\
