@@ -27,10 +27,14 @@ WORKDIR /root/obs-studio
 
 RUN mkdir build
 
-RUN git clone https://github.com/kc5nra/obs-browser.git ./plugins/obs-browser
-RUN echo "add_subdirectory(obs-browser)" >> ./plugins/CMakeLists.txt
+#RUN git clone https://github.com/kc5nra/obs-browser.git ./plugins/obs-browser
+#RUN echo "add_subdirectory(obs-browser)" >> ./plugins/CMakeLists.txt
+#RUN sed -i 's/char16 \*characters/wchar_t \*characters/' ./plugins/obs-browser/obs-browser/browser-manager-base.cpp
 
-#WORKDIR /root/obs-studio/build
-#RUN cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr -DCEF_ROOT_DIR=/root/cef .. && make -j4
-#RUN checkinstall --pkgname=obs-studio --fstrans=no --backup=no  --pkgversion="$(date -u +%Y%m%d)-git" --nodoc -Dy --install=no 
+WORKDIR /root/obs-studio/build
+# RUN cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr/local/obs -DCEF_ROOT_DIR=/root/cef .. && make -j4
+RUN cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr  .. && make -j4
+
+RUN mkdir /root/obs-studio/plugins/obs-browser/data
+RUN checkinstall --pkgname=obs-studio --fstrans=no --backup=no  --pkgversion="$(date -u +%Y%m%d)-git" --nodoc -Dy --install=no #
 CMD ["/bin/bash"]
